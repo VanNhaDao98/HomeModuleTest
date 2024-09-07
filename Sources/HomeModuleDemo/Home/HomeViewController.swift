@@ -18,7 +18,7 @@ public class HomeViewController: BaseViewController {
     
     private var viewModel: HomeViewModel
     
-    weak var delegate: HomeDelegate?
+    public weak var delegate: HomeDelegate?
     
     public init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
