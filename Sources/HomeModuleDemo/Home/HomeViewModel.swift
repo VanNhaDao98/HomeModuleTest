@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+open class HomeViewModel {
+    
+    public init() {
+        
+    }
+}

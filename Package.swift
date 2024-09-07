@@ -6,16 +6,17 @@ import PackageDescription
 let package = Package(
     name: "HomeModuleDemo",
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "HomeModuleDemo",
             targets: ["HomeModuleDemo"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/SnapKit/SnapKit.git", .upToNextMajor(from: "5.0.1"))
+    ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "HomeModuleDemo"),
+            name: "HomeModuleDemo",
+            dependencies: ["SnapKit"]),
         .testTarget(
             name: "HomeModuleDemoTests",
             dependencies: ["HomeModuleDemo"]),

@@ -6,24 +6,54 @@
 //
 
 import UIKit
+import SnapKit
 
-class HomeViewController: UIViewController {
+public protocol HomeDelegate: AnyObject {
+    func homeAction(home: HomeModel)
+}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+public class HomeViewController: BaseViewController {
+    
+    private var button = UIButton()
+    
+    private var viewModel: HomeViewModel
+    
+    weak var delegate: HomeDelegate?
+    
+    public init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+        super.init()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    */
+    
+    public override func viewDidLoad() {
+        super.viewDidLoad()
 
+        view.addSubview(button)
+        button.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        
+        button.setTitle("ButtonTap", for: .normal)
+        button.setTitleColor(.blue, for: .normal)
+        
+        button.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
+    }
+    
+    @objc
+    private func buttonTap() {
+        delegate?.homeAction(home: .init(name: "HomeScreen"))
+    }
+
+}
+
+public class HomeModel {
+    public var name: String
+    
+    public init(name: String) {
+        self.name = name
+    }
 }
