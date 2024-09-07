@@ -16,8 +16,12 @@ final class HomeModuleDemoTests: XCTestCase {
         
     }
     
-    func test() {
+    func testEqual() {
         XCTAssertEqual(demo?.demo(), "demo")
+    }
+    
+    func testNotEqual() {
+        XCTAssertNotEqual(demo?.demo(), "no")
     }
 
 }
