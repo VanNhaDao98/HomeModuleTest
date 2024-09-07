@@ -2,11 +2,22 @@ import XCTest
 @testable import HomeModuleDemo
 
 final class HomeModuleDemoTests: XCTestCase {
-    func testExample() throws {
-        // XCTest Documentation
-        // https://developer.apple.com/documentation/xctest
-
-        // Defining Test Cases and Test Methods
-        // https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods
+    
+    private var demo: HomeModuleDemo?
+    
+    override func setUp() {
+        super.setUp()
+        demo = HomeModuleDemo()
     }
+    
+    override func tearDown() {
+        demo = nil
+        super.tearDown()
+        
+    }
+    
+    func test() {
+        XCTAssertEqual(demo?.demo(), "demo")
+    }
+
 }
